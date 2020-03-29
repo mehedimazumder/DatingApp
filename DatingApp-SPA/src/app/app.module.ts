@@ -1,3 +1,4 @@
+import { FileUploadModule } from 'ng2-file-upload';
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -50,6 +51,7 @@ export function tokenGetter() {
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     RouterModule.forRoot(appRoutes),
+    FileUploadModule,
     JwtModule.forRoot({
       config: {
         tokenGetter,
