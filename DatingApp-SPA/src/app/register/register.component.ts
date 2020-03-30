@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.registerForm = new FormGroup(
       {
-        username: new FormControl('John', Validators.required),
+        username: new FormControl('', Validators.required),
         password: new FormControl('', [
           Validators.required,
           Validators.minLength(4),
@@ -34,9 +34,10 @@ export class RegisterComponent implements OnInit {
   }
 
   passwordMatchValidator(g: FormGroup) {
+    // prettier-ignore
     return g.get('password').value === g.get('confirmPassword').value
       ? null
-      : { mismatch: true };
+      : { 'mismatch': true };
   }
 
   register() {
