@@ -9,6 +9,7 @@ import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
+import { TimeagoModule } from 'ngx-timeago';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -57,6 +58,7 @@ export function tokenGetter() {
     RouterModule.forRoot(appRoutes),
     FileUploadModule,
     ReactiveFormsModule,
+    TimeagoModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter,
