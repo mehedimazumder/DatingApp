@@ -18,9 +18,8 @@ export class MemberListResolver implements Resolve<User[]> {
   ) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<User[]> {
-    // tslint:disable-next-line: no-string-literal
     return this.userService.getUsers(this.pageNumber, this.pageSize).pipe(
-      catchError(error => {
+      catchError((error) => {
         this.alertify.error('Problem retrieving data');
         this.router.navigate(['/home']);
         return of(null);
