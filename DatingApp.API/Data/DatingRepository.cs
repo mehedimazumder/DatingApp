@@ -26,6 +26,11 @@ namespace DatingApp.API.Data
             _context.Remove(entitty);
         }
 
+        public async Task<Like> GetLike(int userId, int recipientId)
+        {
+            return await _context.Likes.FirstOrDefaultAsync(u => u.LikerId == userId && u.LikeeId == recipientId);
+        }
+
         public async Task<Photo> GetMainPhotoForUser(int userId)
         {
             return await _context.Photos.Where(u => u.UserId == userId)
@@ -63,7 +68,8 @@ namespace DatingApp.API.Data
                 users = users.Where(u => u.DateOfBirth >= minDob && u.DateOfBirth <= maxDob);
             }
 
-            if(!String.IsNullOrEmpty(userParams.OrderBy)){
+            if (!String.IsNullOrEmpty(userParams.OrderBy))
+            {
                 switch (userParams.OrderBy)
                 {
                     case "created":
