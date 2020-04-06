@@ -117,12 +117,12 @@ namespace DatingApp.API.Data
             return await _context.Messages.FirstOrDefaultAsync(m => m.Id == id);
         }
 
-        public Task<PagedList<Message>> GetMessagesForUser(MessageParams messageParams)
+        public async Task<PagedList<Message>> GetMessagesForUser(MessageParams messageParams)
         {
             var messages = _context.Messages
                 .Include(u => u.Sender).ThenInclude(p => p.Photos)
                 .Include(u => u.Recipient).ThenInclude(p => p.Photos)
-                AsQueryable();
+                .AsQueryable();
 
             switch (messageParams.MessageContainer)
             {
@@ -133,7 +133,7 @@ namespace DatingApp.API.Data
                     messages = messages.Where(u => u.SenderId == messageParams.UserId);
                     break;
                 default:
-                    messages = messages.Where(u => u.RecipientId == messageParams.UserId && u.IsRead)
+                    messages = messages.Where(u => u.RecipientId == messageParams.UserId && u.IsRead);
                     break;
             }
 
