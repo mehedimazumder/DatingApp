@@ -1,3 +1,4 @@
+import { MessagesResolver } from './_resolvers/messages.resolver';
 import { ListsResolver } from './_resolvers/lists.resolver';
 import { FileUploadModule } from 'ng2-file-upload';
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
@@ -79,6 +80,7 @@ export function tokenGetter() {
     PreventUnsavedChanges,
     AuthGuard,
     ListsResolver,
+    MessagesResolver,
   ],
   bootstrap: [AppComponent],
 })
