@@ -1,3 +1,4 @@
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 import { MessagesResolver } from './_resolvers/messages.resolver';
 import { ListsResolver } from './_resolvers/lists.resolver';
 import { FileUploadModule } from 'ng2-file-upload';
@@ -49,6 +50,7 @@ export function tokenGetter() {
     MemberDetailComponent,
     MemberEditComponent,
     PhotoEditorComponent,
+    MemberMessagesComponent,
   ],
   imports: [
     BrowserModule,
