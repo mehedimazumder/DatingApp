@@ -14,6 +14,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { TimeagoModule } from 'ngx-timeago';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -66,6 +67,7 @@ export function tokenGetter() {
     ReactiveFormsModule,
     TimeagoModule.forRoot(),
     ButtonsModule.forRoot(),
+    CarouselModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter,

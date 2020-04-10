@@ -13,6 +13,7 @@ import { TabsetComponent } from 'ngx-bootstrap';
 export class MemberDetailComponent implements OnInit {
   @ViewChild('memberTabs', { static: true }) memberTabs: TabsetComponent;
   user: User;
+  photos = [];
 
   constructor(
     private userService: UserService,
@@ -28,6 +29,13 @@ export class MemberDetailComponent implements OnInit {
       const selectedTab = params['tab'];
       this.memberTabs.tabs[selectedTab > 0 ? selectedTab : 0].active = true;
     });
+    this.getPhotos();
+  }
+
+  getPhotos() {
+    for (const photo of this.user.photos) {
+      this.photos.push(photo.url);
+    }
   }
 
   // loadUser() {
