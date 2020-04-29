@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace DatingApp.API.Controllers
 {
     [ServiceFilter(typeof(LogUserActivity))]
-    [Authorize]
     [Route("api/users/{userId}/[controller]")]
     [ApiController]
     public class MessagesController : ControllerBase
@@ -99,7 +98,8 @@ namespace DatingApp.API.Controllers
             _repo.Add(message);
 
 
-            if (await _repo.SaveAll()){
+            if (await _repo.SaveAll())
+            {
                 var messageToReturn = _mapper.Map<MessageToReturnDto>(message);
                 return CreatedAtRoute("GetMessage", new { id = message.Id }, messageToReturn);
             }
@@ -108,7 +108,8 @@ namespace DatingApp.API.Controllers
         }
 
         [HttpPost("{id}")]
-        public async Task<IActionResult> DeleteMessage(int id, int userId){
+        public async Task<IActionResult> DeleteMessage(int id, int userId)
+        {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
             {
                 return Unauthorized();
@@ -116,23 +117,24 @@ namespace DatingApp.API.Controllers
 
             var messageFromRepo = await _repo.GetMessage(id);
 
-            if(messageFromRepo.SenderId == userId)
+            if (messageFromRepo.SenderId == userId)
                 messageFromRepo.SenderDeleted = true;
-            
-            if(messageFromRepo.RecipientId == userId)
+
+            if (messageFromRepo.RecipientId == userId)
                 messageFromRepo.RecipientDeleted = true;
 
-            if(messageFromRepo.SenderDeleted && messageFromRepo.RecipientDeleted)
+            if (messageFromRepo.SenderDeleted && messageFromRepo.RecipientDeleted)
                 _repo.Delete(messageFromRepo);
-            
-            if(await _repo.SaveAll())
+
+            if (await _repo.SaveAll())
                 return NoContent();
-            
+
             throw new Exception("Error deleting message");
         }
 
         [HttpPost("{id}/read")]
-        public async Task<IActionResult> MarkMessageAsRead(int userId, int id){
+        public async Task<IActionResult> MarkMessageAsRead(int userId, int id)
+        {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
             {
                 return Unauthorized();
@@ -140,7 +142,7 @@ namespace DatingApp.API.Controllers
 
             var message = await _repo.GetMessage(id);
 
-            if(message.RecipientId != userId)
+            if (message.RecipientId != userId)
                 return Unauthorized();
 
             message.IsRead = true;
