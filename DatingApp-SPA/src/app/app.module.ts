@@ -1,3 +1,4 @@
+import { RolesModalComponent } from './admin/roles-modal/roles-modal.component';
 import { AdminService } from './_services/admin.service';
 import { UserService } from 'src/app/_services/user.service';
 import { AlertifyService } from './_services/alertify.service';
@@ -14,7 +15,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BsDropdownModule, TabsModule, PaginationModule } from 'ngx-bootstrap';
+import {
+  BsDropdownModule,
+  TabsModule,
+  PaginationModule,
+  ModalModule,
+} from 'ngx-bootstrap';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { RouterModule } from '@angular/router';
@@ -80,6 +86,7 @@ export function tokenGetter() {
     TimeagoModule.forRoot(),
     ButtonsModule.forRoot(),
     CarouselModule.forRoot(),
+    ModalModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter,
@@ -103,6 +110,7 @@ export function tokenGetter() {
     UserService,
     AdminService,
   ],
+  entryComponents: [RolesModalComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
