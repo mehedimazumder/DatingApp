@@ -1,3 +1,9 @@
+import { AdminService } from './_services/admin.service';
+import { UserService } from 'src/app/_services/user.service';
+import { AlertifyService } from './_services/alertify.service';
+import { AuthService } from './_services/auth.service';
+import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 import { MessagesResolver } from './_resolvers/messages.resolver';
 import { ListsResolver } from './_resolvers/lists.resolver';
@@ -56,6 +62,8 @@ export function tokenGetter() {
     MemberMessagesComponent,
     AdminPanelComponent,
     HasRoleDirective,
+    UserManagementComponent,
+    PhotoManagementComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,6 +97,11 @@ export function tokenGetter() {
     AuthGuard,
     ListsResolver,
     MessagesResolver,
+    AuthService,
+    AlertifyService,
+    AuthGuard,
+    UserService,
+    AdminService,
   ],
   bootstrap: [AppComponent],
 })
