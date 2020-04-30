@@ -64,7 +64,7 @@ namespace DatingApp.API.Controllers
 
                 return Ok(new
                 {
-                    token = GenerateToken(user),
+                    token = GenerateToken(user).Result,
                     user = appUser
                 });
             }
