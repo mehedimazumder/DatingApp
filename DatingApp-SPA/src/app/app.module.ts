@@ -15,12 +15,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-  BsDropdownModule,
-  TabsModule,
-  PaginationModule,
-  ModalModule,
-} from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, PaginationModule } from 'ngx-bootstrap';
+import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { RouterModule } from '@angular/router';
@@ -109,6 +105,7 @@ export function tokenGetter() {
     AuthGuard,
     UserService,
     AdminService,
+    BsModalRef,
   ],
   entryComponents: [RolesModalComponent],
   bootstrap: [AppComponent],
